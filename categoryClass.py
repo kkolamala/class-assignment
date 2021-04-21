@@ -5,12 +5,20 @@ class Category:
         self.balance = balance
         
     def deposit(self,depositAmount):
-        self.balance += depositAmount
-        print('Deposited ${0}. Total balance after deposit is - ${1}'.format(depositAmount,self.balance))
+        try:
+            self.credit(depositAmount)
+        except:
+            print('Error occured during Deposit. Please try again...')
+        else:
+            print('Deposited ${0}. Total balance after deposit is - ${1}'.format(depositAmount,self.balance))
     
     def withdraw(self,withdrawAmount):
-        self.balance -= withdrawAmount
-        print('withdrawed ${0}. Total balance after withdrawl is - ${1}'.format(withdrawAmount,self.balance))
+        try:
+            self.debit(withdrawAmount)
+        except:
+            print('Error occured while withdrawing amount.Please try again...')
+        else:
+            print('withdrawed ${0}. Total balance after withdrawl is - ${1}'.format(withdrawAmount,self.balance))
         
     def transfer(self,transferAmount):
         self.balance -= transferAmount
@@ -18,6 +26,12 @@ class Category:
         
     def checkBalance(self):
         print('your balnce availabel is ${0}'.format(self.balance))
+        
+    def debit(self,amountToDebit):
+        self.balance -= amountToDebit
+    
+    def credit(self,amountToCredit):
+        self.balance += amountToCredit
         
     def purchaseCategory(self):
         if(self.amount <= self.balance):
