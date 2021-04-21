@@ -22,7 +22,8 @@ class Category:
         
     def transfer(self,transferAmount):
         self.balance -= transferAmount
-        print('transferred amount ${0}. Total balance after transfer is - ${1}'.format(transferAmount,self.balance))
+        print('transferred amount ${0}. successfully'.format(transferAmount))
+        return transferAmount
         
     def checkBalance(self):
         print('your balnce availabel is ${0}'.format(self.balance))
@@ -45,6 +46,10 @@ class Category:
 categoryObj = Category('Car',12000,10000)
 categoryObj.deposit(5000)
 categoryObj.withdraw(500)
-categoryObj.transfer(500)
 categoryObj.checkBalance()
 categoryObj.purchaseCategory()
+
+categoryObj2 = Category('Car',12000,9500)
+categoryObj2.checkBalance() #check balance before transfer credit
+categoryObj2.credit(categoryObj.transfer(500))
+categoryObj2.checkBalance() #check balance after ore transfer credit
